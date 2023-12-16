@@ -1,40 +1,45 @@
+import React from "react";
 import { useCalContext } from "./InputProvider";
 
+const Inputs = () => {
+  const [ins, setIns] = useCalContext();
 
-const Inputs = () =>{
-    const [ins,setIns] = useCalContext();
-    console.log(ins);
-   // const leftSide = ins.leftSide;
-    return (
-        <div>
-        <label> Left side
-        <input 
-          value={ins.leftSide} 
-         onChange={e => { 
-           setIns({ 
-             ...ins, 
-             leftSide: e.target.value 
-           }); 
-         }} 
-       /> 
-     </label>
-      <label> Right side
-        <input 
-          value={ins.rightSide} 
-         onChange={e => { 
-           setIns({ 
-             ...ins, 
-             rightSide: e.target.value 
-           }); 
-         }} 
-       /> 
-       </label>
-       <label> Result
-        <input value={ins.result} /> 
-       </label>
-       </div>
-    )
+  const handleLeftInputChange = (e) => {
+    setIns({
+      ...ins,
+      leftSide: e.target.value,
+    });
+  };
+
+  const handleRightInputChange = (e) => {
+    setIns({
+      ...ins,
+      rightSide: e.target.value,
+    });
+  };
+
+  return (
+    <div>
+      <label>
+        Left side
+        <input
+          value={ins.leftSide}
+          onChange={handleLeftInputChange}
+        />
+      </label>
+      <label>
+        Right side
+        <input
+          value={ins.rightSide}
+          onChange={handleRightInputChange}
+        />
+      </label>
+      <label>
+        Result
+        <input value={ins.result} readOnly />
+      </label>
+    </div>
+  );
 }
-
 
 export default Inputs;
